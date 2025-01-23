@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plată</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .payment-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .payment-methods {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="payment-container">
+    <h1>Alege Metoda de Plată</h1>
+    <form id="payment-form">
+      <div class="payment-methods">
+        <label>
+          <input type="radio" name="payment-method" value="cash" checked>
+          Plata în numerar
+        </label>
+        <label>
+          <input type="radio" name="payment-method" value="card">
+          Plata cu cardul
+        </label>
+      </div>
+
+      <div id="card-details" class="hidden">
+        <h2>Detalii Card</h2>
+        <label for="card-number">Număr Card:</label>
+        <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19">
+
+        <label for="card-holder">Nume Titular:</label>
+        <input type="text" id="card-holder" placeholder="Nume și Prenume">
+
+        <label for="expiry-date">Dată Expirare:</label>
+        <input type="text" id="expiry-date" placeholder="MM/YY" maxlength="5">
+
+        <label for="cvv">CVV:</label>
+        <input type="password" id="cvv" placeholder="123" maxlength="3">
+      </div>
+
+      <button type="submit">Finalizează Plata</button>
+    </form>
+  </div>
+
+  <script>
+    const paymentMethods = document.getElementsByName('payment-method');
+    const cardDetails = document.getElementById('card-details');
+
+    paymentMethods.forEach(method => {
+      method.addEventListener('change', () => {
+        if (method.value === 'card') {
+          cardDetails.classList.remove('hidden');
+        } else {
+          cardDetails.classList.add('hidden');
+        }
+      });
+    });
+
+    const form = document.getElementById('payment-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Plata a fost procesată!');
+    });
+  </script>
+</body>
+                                                </html>
